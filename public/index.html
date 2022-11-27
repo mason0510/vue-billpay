@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<link rel="icon" href="<%= BASE_URL %>favicon.ico">
+	<title>正在加载中...</title>
+<!--	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+</head>
+<script>
+	/* // 转化rem基础单位
+	!(function (doc, win) {
+		var docEl = doc.documentElement,
+			resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function () {
+				var clientWidth = docEl.clientWidth;
+				if (!clientWidth) return;
+				docEl.style.fontSize = 10 * (clientWidth / 100) + 'px';
+				// if (clientWidth < 750) {
+				//   docEl.style.fontSize = 200 * (clientWidth / 100) + 'px';
+				//   docEl.style.fontSize = 10 * (clientWidth / 100) + 'px';
+				// } else {
+				//   docEl.style.fontSize = '200px';
+				// }
+			};
+		if (!doc.addEventListener) return;
+		win.addEventListener(resizeEvt, recalc, false);
+		doc.addEventListener('DOMContentLoaded', recalc, false);
+	})(document, window);
+	// */
+</script>
+
+<body>
+	<noscript>
+		<strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+			Please enable it to continue.</strong>
+	</noscript>
+	<div id="app"></div>
+	<!-- built files will be auto injected -->
+
+</body>
+<script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script>
+	// 测试 -------------------------------------------------------
+	$('body').error(function(){
+		console.log("$('body').error");
+	});
+	$(function(){
+		console.log("$(function");
+	});
+	window.onerror = function(message, source, lineno, colno, error) {
+		console.log("window.onerror");
+	}
+	var once = false;
+	document.addEventListener("error", function(e){
+		console.log('document.addEventListener("error"', arguments);
+		console.log('判断', e.target.tagName=='IMG', e.target.src.indexOf(location.origin+'/img')==0);
+
+
+		// var elem = e.target;
+		// if(elem.tagName.toLowerCase() === 'img'){
+		// elem.src = "/img/hint.jpg";
+		// }
+
+		/*
+			if(once){
+				return
+			}else{
+				once=true
+			}
+			e.target.src = '';
+			return
+			e.target.src = e.target.src.replace(location.origin, location.href );
+			console.log('location.href', location.href+123 );
+			console.log('e.target.src.replace(location.origin, location.href', e.target.src.replace(location.origin, location.href) );
+			console.log('e.target.src', e.target.src);
+			return
+
+		*/
+
+		if(e.target.tagName=='IMG'&&e.target.src.indexOf(location.href)==0 ){
+			return
+		}
+		if(e.target.tagName=='IMG'&&e.target.src.indexOf(location.origin+'/img')==0 ){
+			console.log('document.addEventListener => img error', e.target.src);
+			// e.target.src location.origin pathname
+			// e.target.src = e.target.src.replace(location.origin, location.href);
+			e.target.src = e.target.src.replace(location.origin+'/', location.origin+location.pathname);
+		}
+	}, true /*指定事件处理函数在捕获阶段执行*/);
+	// 测试 -end -------------------------------------------------------
+</script>
+
+</html>

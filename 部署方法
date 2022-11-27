@@ -1,0 +1,33 @@
+1.build成dist文件
+2.上传到服务器 /root/vue/billpay ,用dist里面的文件替换此文件夹的文件
+https://www.coolcoin.ltd/billpay
+服务器账号密码
+47.254.33.6
+zxc6545398x
+
+
+
+appid: wx1062854dd7b2dbd6
+secret : bc623d22ecaa944ca4e7fdd5ef79f16b
+token: 0HCMgo
+
+对接微信公众号和微信支付
+1.申请账号
+2.开发配置
+URL为微信开发正确响应发送Token验证的地址目录，也就是公众号里的白名单配置
+Token是微信开发中用于回调微信响应的标识 根据个人需求进行配置即可
+js接口安全域名 是承接微信接口以供调用的域名地址
+另外微信支付还需要微信支付平台的商户号以及支付密钥的配置
+3.一般的是微信接口进行封装 自己调用封装接口比较常见
+wxlogin () {
+      window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.appid}&redirect_uri=${this.url}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+}
+02.在重定向的页面拿到微信那边给我们返回的code，会拼接在URL后面，我们拿到这个code再请求后台的接口换取token，完成微信登录
+补充:
+a、引导用户进入授权页面同意授权，获取code
+
+b、通过code换取网页授权access_token（与基础支持中的access_token不同）
+
+c、如果需要，开发者可以刷新网页授权access_token，避免过期
+
+d、通过网页授权access_token和openid获取用户基本信息（支持UnionID机制）

@@ -1,0 +1,94 @@
+// "use strict";
+//
+// import Vue from 'vue';
+// import axios from "axios";
+//
+// // Full config:  https://github.com/axios/axios#request-config
+// axios.defaults.baseURL = process.env.VUE_APP_AXIOS_BASEURL;
+// // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+// // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// const _axios = axios.create();
+// const _adminAxios = axios.create();
+//
+// _axios.interceptors.request.use(
+//   function (config) {
+//     // Do something before request is sent
+//     // if(config.data) {
+//     //   config.data = new URLSearchParams(config.data);
+//     // }
+//     // 使用token
+//     if (!config.url.includes('/login') && !config.url.includes('/register') && !config.url.includes('/retrieve')) {
+//       const token = localStorage.getItem(process.env.VUE_APP_TOKEN);
+//       if (token) {
+//         config.headers['Authorization'] = token;
+//       }
+//     }
+//     return config;
+//   },
+//   function (error) {
+//     // Do something with request error
+//     return Promise.reject(error);
+//   }
+// );
+//
+// // Add a response interceptor
+// _axios.interceptors.response.use(
+//   function (response) {
+//     // Do something with response data
+//     return response.data;
+//   },
+//   function (error) {
+//     // Do something with response error
+//     return Promise.reject(error);
+//   }
+// );
+// _adminAxios.interceptors.request.use(
+//   function (config) {
+//     // Do something before request is sent
+//     // if(config.data) {
+//     //   config.data = new URLSearchParams(config.data);
+//     // }
+//     // 使用token
+//     if (!config.url.includes('/admin/login')) {
+//       const token = localStorage.getItem(process.env.VUE_APP_ADMIN_TOKEN);
+//       if (token) {
+//         config.headers['Authorization'] = token;
+//       }
+//     }
+//     return config;
+//   },
+//   function (error) {
+//     // Do something with request error
+//     return Promise.reject(error);
+//   }
+// );
+// _adminAxios.interceptors.response.use(
+//   function (response) {
+//     // Do something with response data
+//     return response.data;
+//   },
+//   function (error) {
+//     // Do something with response error
+//     return Promise.reject(error);
+//   }
+// );
+// Plugin.install = function (Vue, options) {
+//   // Vue.axios = _axios;
+//   // window.axios = _axios;
+//   Object.defineProperties(Vue.prototype, {
+//     axios: {
+//       get() {
+//         return _adminAxios;
+//       }
+//     },
+//     $axios: {
+//       get() {
+//         return _axios;
+//       }
+//     },
+//   });
+// };
+//
+// Vue.use(Plugin)
+//
+// export default Plugin;
